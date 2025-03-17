@@ -1,0 +1,138 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-50">
+  <div class="flex bg-white shadow-lg rounded-lg w-full max-w-3xl">
+    <!-- Left Side: Brand Information -->
+    <div class="w-1/2 p-8 bg-blue-600 text-white rounded-l-lg">
+      <h2 class="text-3xl font-bold mb-6">Welcome Back!</h2>
+      <p class="mb-6">
+        Sign in to access your personalized dashboard and continue your journey
+        with us.
+      </p>
+      <ul class="space-y-4">
+        <li class="flex items-center">
+          <svg
+            class="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          Secure Authentication
+        </li>
+        <li class="flex items-center">
+          <svg
+            class="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          Personalized Experience
+        </li>
+        <li class="flex items-center">
+          <svg
+            class="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          24/7 Support
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right Side: Login Form -->
+    <div class="w-1/2 p-8">
+      <h2 class="text-2xl font-bold text-center mb-6">Sign In</h2>
+
+      <div
+        *ngIf="apiError"
+        class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded"
+      >
+        {{ apiError }}
+      </div>
+
+      <form [formGroup]="signInForm" (ngSubmit)="onSignIn()" class="space-y-4">
+        <div class="relative">
+          <input
+            formControlName="email"
+            type="email"
+            class="w-full p-3 border border-gray-300 rounded-md"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+
+        <div class="relative">
+          <input
+            formControlName="password"
+            [type]="showPassword ? 'text' : 'password'"
+            class="w-full p-3 border border-gray-300 rounded-md"
+            placeholder="Enter your password"
+            required
+          />
+          <button
+            type="button"
+            class="absolute right-3 top-9 text-gray-500"
+            (click)="showPassword = !showPassword"
+          >
+            {{ showPassword ? 'Hide' : 'Show' }}
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <label class="flex items-center">
+            <input
+              type="checkbox"
+              formControlName="rememberMe"
+              class="mr-2"
+            />
+            <span class="text-sm text-gray-600">Remember me</span>
+          </label>
+          <button
+            type="button"
+            (click)="onForgotPassword()"
+            class="text-sm text-blue-600 hover:underline"
+          >
+            Forgot password?
+          </button>
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="isLoading"
+          class="w-full p-3 bg-blue-600 text-white rounded-md"
+        >
+          {{ isLoading ? 'Signing in...' : 'Sign In' }}
+        </button>
+      </form>
+
+      <div class="mt-4 text-center">
+        <span class="text-sm text-gray-600">
+          Don't have an account?
+          <a routerLink="/signup" class="text-blue-600 hover:underline"
+            >Sign up</a
+          >
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

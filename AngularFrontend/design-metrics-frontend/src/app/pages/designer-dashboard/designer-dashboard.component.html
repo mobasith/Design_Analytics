@@ -1,0 +1,118 @@
+<div class="flex h-screen bg-gray-100">
+    <!-- Sidebar -->
+    <div class="w-64 bg-white shadow-lg">
+      <div class="p-6">
+        <h1 class="text-2xl font-bold text-indigo-600">Design Metrics</h1>
+      </div>
+      <nav class="mt-6">
+        <div class="px-4 flex flex-col space-y-2">
+          <button (click)="router.navigate(['/my-dashboard'])" class="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg">
+            Dashboard
+          </button>
+          <button (click)="router.navigate(['/all-designs'])" class="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            All Designs
+          </button>
+          <button (click)="showUploadModal = true" class="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            Upload Design
+          </button>
+          <button (click)="router.navigate(['/analytics'])" class="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            Analytics
+          </button>
+          <button (click)="router.navigate(['/submit-feedback'])" class="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            Feedback
+          </button>
+          <button (click)="router.navigate(['/chat'])" class="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            Chat
+          </button>
+          <button (click)="router.navigate(['/profile'])" class="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            Settings
+          </button>
+        </div>
+      </nav>
+    </div>
+  
+    <!-- Main Content -->
+    <div class="flex-1 overflow-auto p-8">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-2xl font-semibold text-gray-800">My Designs</h2>
+        <button (click)="showUploadModal = true" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
+          Upload New Design
+        </button>
+      </div>
+  
+      <div *ngIf="loading" class="text-center py-8">Loading...</div>
+      <div *ngIf="error" class="text-red-500 text-center py-8">{{ error }}</div>
+      <div *ngIf="!loading && designs.length === 0" class="text-center py-8 text-gray-500">
+        No designs found. Click "Upload New Design" to add your first design.
+      </div>
+      <div *ngIf="designs.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let design of designs" class="w-full bg-white shadow-md rounded-md">
+          <div class="px-4 py-2">
+            <h3 class="text-lg font-semibold">{{ design.designTitle }}</h3>
+            <img src="{{ design.designInput }}" alt="design image">
+            <p class="text-sm text-gray-600">{{ design.description }}</p>
+            <p class="mt-2 text-sm text-gray-500">Likes: {{ design.likeCount }}</p>
+          </div>
+          <div class="px-4 py-2">
+            <p class="text-sm text-gray-500">{{ formatDate(design.createdAt) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Upload Modal -->
+    <div *ngIf="showUploadModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div class="bg-white p-6 rounded-md w-full max-w-md">
+        <h3 class="text-lg font-semibold mb-4">Upload New Design</h3>
+        <form (submit)="handleUpload()" class="space-y-4">
+          <div>
+            <label for="designTitle" class="block text-sm font-semibold">Design Title *</label>
+            <input
+              type="text"
+              id="designTitle"
+              name="designTitle"
+              [(ngModel)]="formData.designTitle"
+              required
+              class="mt-1 w-full px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+          <div>
+            <label for="description" class="block text-sm font-semibold">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              [(ngModel)]="formData.description"
+              class="mt-1 w-full px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+            ></textarea>
+          </div>
+          <div>
+            <label for="designInput" class="block text-sm font-semibold">File *</label>
+            <input
+              type="file"
+              id="designInput"
+              (change)="handleFileChange($event)"
+              required
+              class="mt-1 w-full px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+          <div *ngIf="error" class="text-red-500 text-sm">{{ error }}</div>
+          <div class="flex justify-end space-x-4">
+            <button 
+              type="button" 
+              (click)="showUploadModal = false" 
+              class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
+            >
+              Cancel
+            </button>
+            <button 
+              type="submit" 
+              [disabled]="loading" 
+              class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:opacity-50"
+            >
+              {{ loading ? 'Uploading...' : 'Upload' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

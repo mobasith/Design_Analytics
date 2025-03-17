@@ -1,0 +1,92 @@
+<div class="flex h-screen bg-gray-50">
+    <!-- Sidebar -->
+    <div class="w-64 bg-white shadow-lg border-r border-gray-100">
+      <div class="p-6">
+        <h1 class="text-2xl font-bold text-indigo-600">Design Metrics</h1>
+      </div>
+      <nav class="mt-6">
+        <div class="px-4">
+          <div class="flex flex-col space-y-2">
+            <button
+              *ngFor="let item of [
+                { icon: 'layout', text: 'Dashboard', path: '/designer-dashboard' },
+                { icon: 'grid', text: 'All Designs', path: '/all-designs' },
+                { icon: 'upload', text: 'Upload Design', path: '/upload-design' },
+                { icon: 'analytics', text: 'Analytics', path: '/dashboard' },
+                { icon: 'file-text', text: 'Upload Feedback', path: '/submit-feedback' },
+                { icon: 'message-square', text: 'Chat', path: '/chat' },
+                { icon: 'settings', text: 'Settings', path: '/profile' },
+              ]"
+              (click)="navigateTo(item.path)"
+              class="flex items-center px-4 py-2 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors">
+              <span class="icon" [ngClass]="item.icon"></span>
+              {{ item.text }}
+            </button>
+          </div>
+        </div>
+      </nav>
+      <!-- <div class="absolute bottom-0 w-64 p-4">
+        <button
+          (click)="handleLogout()"
+          class="flex items-center w-full px-4 py-2 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors">
+          <span class="icon" [ngClass]="'logout'"></span>
+          Logout
+        </button>
+      </div> -->
+    </div>
+  
+    <!-- Main Content -->
+    <div class="flex-1 overflow-auto p-8 bg-gray-50">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-center justify-between mb-8">
+          <h1 class="text-4xl font-extrabold text-gray-800">Design Analytics</h1>
+        </div>
+  
+        <!-- Performance Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div
+            *ngFor="let stat of [
+              { icon: '👀', label: 'Total Views', value: '24,500', gradient: 'from-blue-300 to-blue-500' },
+              { icon: '❤️', label: 'Total Likes', value: '9,250', gradient: 'from-pink-300 to-pink-500' },
+              { icon: '📥', label: 'Design Downloads', value: '4,600', gradient: 'from-green-300 to-green-500' },
+              { icon: '⏰', label: 'Avg. View Time', value: '3m 42s', gradient: 'from-purple-300 to-purple-500' },
+            ]"
+            class="bg-gradient-to-br text-white rounded-xl shadow-md transform transition-all hover:scale-105">
+            <div class="p-6 flex items-center space-x-4">
+              <div class="bg-white/20 p-3 rounded-full text-2xl">
+                {{ stat.icon }}
+              </div>
+              <div>
+                <p class="text-sm opacity-80">{{ stat.label }}</p>
+                <p class="text-3xl font-bold">{{ stat.value }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Charts Section -->
+        <div class="grid lg:grid-cols-2 gap-8">
+          <!-- Performance Chart -->
+          <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Design Performance</h2>
+            <canvas baseChart
+              [data]="performanceChartData"
+              [options]="chartOptions"
+              chartType="bar">
+            </canvas>
+          </div>
+  
+          <!-- Category Chart -->
+          <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Design Categories</h2>
+            <canvas baseChart
+              [data]="categoryChartData"
+              [options]="chartOptions"
+              chartType="pie">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

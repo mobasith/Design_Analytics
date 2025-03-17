@@ -1,0 +1,122 @@
+<div class="flex min-h-screen bg-gray-100">
+  <!-- Sidebar -->
+  <aside class="bg-white shadow-md w-64 h-screen sticky top-0 overflow-y-auto">
+    <div class="flex items-center justify-center py-6 border-b">
+      <div class="w-12 h-12 bg-gray-300 rounded-full overflow-hidden">
+        <img src="user1.jpg" alt="User Avatar" />
+      </div>
+      <div class="ml-3">
+        <h2 class="text-lg font-bold">{{ userData?.userName || 'Loading...' }}</h2>
+        <p class="text-gray-500 text-sm">{{ userData?.role || '' }}</p>
+      </div>
+    </div>
+    <nav class="mt-4 px-4">
+      <div class="flex flex-col space-y-2">
+        <button class="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg">
+          Dashboard
+        </button>
+        <button
+          (click)="handleNavigate('/submit-feedback')"
+          class="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+        >
+          Submit Feedback
+        </button>
+        <button
+          (click)="handleNavigate('/all-designs')"
+          class="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+        >
+          All Designs
+        </button>
+        <button
+          (click)="handleNavigate('/all-designers')"
+          class="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+        >
+          All Designers
+        </button>
+        <button
+          (click)="handleNavigate('/chat')"
+          class="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+        >
+          Chat
+        </button>
+        <button
+          (click)="handleNavigate('/profile')"
+          class="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+        >
+          Settings
+        </button>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 ml-4 p-8">
+    <!-- Header Section -->
+    <div class="flex justify-between items-center mb-8">
+      <div class="flex items-center">
+        <input
+          type="text"
+          placeholder="Search designs..."
+          class="border border-gray-300 rounded-lg p-2 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          [(ngModel)]="searchQuery"
+        />
+        <select
+          [(ngModel)]="selectedCategory"
+          class="border border-gray-300 rounded-lg p-2 ml-4 w-56 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="all">All Categories</option>
+        </select>
+      </div>
+      <div class="ml-4">
+        <button
+          class="px-4 py-2 mr-2 rounded"
+          [ngClass]="{ 'bg-blue-500 text-white': viewMode === 'grid', 'border': viewMode !== 'grid' }"
+          (click)="viewMode = 'grid'"
+        >
+          Grid View
+        </button>
+        <button
+          class="px-4 py-2 rounded"
+          [ngClass]="{ 'bg-blue-500 text-white': viewMode === 'list', 'border': viewMode !== 'list' }"
+          (click)="viewMode = 'list'"
+        >
+          List View
+        </button>
+      </div>
+    </div>
+
+    <!-- Content Area -->
+    <div *ngIf="loading" class="flex justify-center items-center h-48">
+      <p>Loading...</p>
+    </div>
+    <div *ngIf="error" class="text-red-500 text-center">{{ error }}</div>
+    <div
+      *ngIf="!loading && !error"
+      class="grid gap-6"
+      [ngClass]="{
+        'grid-cols-3': viewMode === 'grid',
+        'grid-cols-1': viewMode === 'list'
+      }"
+    >
+      <div *ngFor="let design of filteredDesigns" class="border p-4 rounded-lg hover:shadow-lg">
+        <h3 class="font-bold">{{ design.designTitle }}</h3>
+        <p class="text-gray-500">{{ design.description }}</p>
+        <img
+          [src]="design.designInput"
+          alt="{{ design.designTitle }}"
+          class="w-full h-48 object-cover rounded-lg"
+        />
+        <div class="mt-2 flex justify-between text-gray-500 text-sm">
+          <span>{{ design.createdByName }}</span>
+          <span>{{ design.createdAt | date }}</span>
+        </div>
+        <!-- <button
+          class="w-full mt-2 bg-blue-500 text-white py-2 rounded-lg"
+          (click)="handleViewDesign(design.designId)"
+        >
+          View Design
+        </button> -->
+      </div>
+    </div>
+  </main>
+</div>

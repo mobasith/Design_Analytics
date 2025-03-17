@@ -1,0 +1,184 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .profile-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f6f9;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .sidebar-content {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .user-profile {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .user-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #e6f2ff;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+  
+  .role-label {
+    color: #666;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin-bottom: 30px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  nav ul li.active a {
+    background-color: #e6f2ff;
+    color: #2979ff;
+    font-weight: 600;
+  }
+  
+  nav ul li a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .logout-btn {
+    background-color: #2979ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-btn:hover {
+    background-color: #1e88e5;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 30px;
+    background-color: #f4f6f9;
+  }
+  
+  .profile-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .profile-section h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .info-card, .password-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+  }
+  
+  .info-card h2, .password-card h2 {
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+  }
+  
+  .info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .info-item .label {
+    color: #666;
+    font-weight: 600;
+  }
+  
+  .info-item .value {
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .update-btn {
+    background-color: #2979ff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .update-btn:hover {
+    background-color: #1e88e5;
+  }
+  
+  .snackbar-error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  .snackbar-success {
+    background-color: #d4edda;
+    color: #155724;
+  }

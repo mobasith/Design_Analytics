@@ -1,0 +1,10 @@
+/* Add your custom CSS here if needed */
+input, select {
+    transition: all 0.3s ease;
+  }
+  
+  input:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  

@@ -1,0 +1,84 @@
+/* Tailwind CSS-like styles */
+.bg-gray-50 {
+    background-color: #f9fafb;
+  }
+  
+  .max-w-7xl {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .bg-white {
+    background-color: white;
+  }
+  
+  .rounded-xl {
+    border-radius: 0.75rem;
+  }
+  
+  .shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .border-gray-100 {
+    border-color: #f3f4f6;
+  }
+  
+  .text-gray-900 {
+    color: #111827;
+  }
+  
+  .text-gray-700 {
+    color: #374151;
+  }
+  
+  .text-indigo-500 {
+    color: #6366f1;
+  }
+  
+  .bg-indigo-500 {
+    background-color: #6366f1;
+  }
+  
+  .hover\:bg-indigo-600:hover {
+    background-color: #4f46e5;
+  }
+  
+  .text-red-500 {
+    color: #ef4444;
+  }
+  
+  /* Additional responsive and transition utilities */
+  .transition-colors {
+    transition-property: background-color, border-color, color;
+    transition-duration: 0.15s;
+  }
+  
+  .space-y-6 > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .grid {
+    display: grid;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .grid-cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .grid-cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  #charts-container {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  

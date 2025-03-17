@@ -1,0 +1,117 @@
+<div class="min-h-screen font-sans antialiased">
+    <!-- Sticky Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center space-x-2">
+            <svg class="w-8 h-8 text-blue-600"><use xlink:href="#icon-bar-chart-3"></use></svg>
+            <span class="text-xl font-bold text-gray-900">DesignMetrics</span>
+          </div>
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#features" class="text-gray-600 hover:text-blue-600 transition-colors">Features</a>
+            <a href="#how-it-works" class="text-gray-600 hover:text-blue-600 transition-colors">How it Works</a>
+            <a href="#pricing" class="text-gray-600 hover:text-blue-600 transition-colors">Pricing</a>
+            <button (click)="navigateToSignIn()" class="px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors">
+              Get Started
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-blue-50 to-white pt-20 pb-32 overflow-hidden">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row items-center justify-between">
+          <div class="lg:w-1/2 space-y-8">
+            <h1 class="text-5xl font-bold text-gray-900 leading-tight">
+              Transform Your Design Process with 
+              <span class="text-blue-600"> Data-Driven Insights</span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-xl">
+              Empower your design team with real-time analytics, actionable insights, and collaborative tools to create exceptional user experiences.
+            </p>
+            <div class="flex items-center space-x-4">
+              <button (click)="navigateToSignIn()" class="px-8 py-4 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                <span>Start Free Trial</span>
+                <svg class="w-4 h-4"><use xlink:href="#icon-arrow-right"></use></svg>
+              </button>
+              <button 
+                (click)="toggleVideoModal()" 
+                class="px-8 py-4 rounded-full border border-gray-300 hover:border-blue-600 transition-colors flex items-center space-x-2">
+                <svg class="w-4 h-4 text-blue-600"><use xlink:href="#icon-play"></use></svg>
+                <span class="text-gray-700">Watch Demo</span>
+              </button>
+            </div>
+          </div>
+          <div class="lg:w-1/2 mt-12 lg:mt-0">
+            <div class="relative">
+              <div class="absolute inset-0 bg-blue-600 rounded-lg transform rotate-3"></div>
+              <img 
+                src="Hero.avif"
+                alt="Dashboard Preview" 
+                class="relative rounded-lg shadow-xl transform -rotate-3 hover:rotate-0 transition-transform duration-300"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div *ngFor="let stat of stats" class="text-center">
+            <div class="text-4xl font-bold text-blue-600">{{ stat.number }}</div>
+            <div class="text-gray-600 mt-2">{{ stat.label }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900">Powerful Features for Design Teams</h2>
+          <p class="mt-4 text-xl text-gray-600">Everything you need to analyze, track, and improve your design process</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div *ngFor="let feature of features" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+              <svg [innerHTML]="feature.icon" class="w-6 h-6 text-blue-500"></svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ feature.title }}</h3>
+            <p class="text-gray-600">{{ feature.description }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- CTA Section -->
+    <section class="py-20 bg-blue-600">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-8">Ready to Transform Your Design Process?</h2>
+        <button (click)="navigateToSignIn()" class="px-8 py-4 bg-white text-blue-600 rounded-full hover:bg-gray-100 transition-colors inline-flex items-center space-x-2">
+          <span>Get Started Now</span>
+          <svg class="w-4 h-4"><use xlink:href="#icon-chevron-right"></use></svg>
+        </button>
+        <p class="mt-4 text-blue-100">14-day free trial · No credit card required</p>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between">
+          <div>&copy; {{ currentYear }} DesignMetrics. All Rights Reserved.</div>
+          <div class="flex space-x-4">
+            <a routerLink="/privacy" class="hover:text-white">Privacy Policy</a>
+            <a routerLink="/terms" class="hover:text-white">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  

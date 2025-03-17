@@ -1,0 +1,169 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-50">
+    <div class="flex bg-white shadow-lg rounded-lg w-full max-w-3xl">
+      <!-- Left Side: Engaging Content -->
+      <div class="w-1/2 p-8 bg-blue-600 text-white rounded-l-lg">
+        <h2 class="text-3xl font-bold mb-6">Welcome to Our Platform!</h2>
+        <p class="mb-6">
+          Join our community and unlock exclusive features designed to enhance
+          your experience.
+        </p>
+        <ul class="space-y-4">
+          <li class="flex items-center">
+            <svg
+              class="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            Personalized Dashboard
+          </li>
+          <li class="flex items-center">
+            <svg
+              class="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            Premium Features Access
+          </li>
+          <li class="flex items-center">
+            <svg
+              class="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            Community Support
+          </li>
+        </ul>
+      </div>
+  
+      <!-- Right Side: Sign-Up Form -->
+      <div class="w-1/2 p-8">
+        <h2 class="text-2xl font-bold text-center mb-6">
+          Create Account
+        </h2>
+        <div *ngIf="apiError" class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+          {{ apiError }}
+        </div>
+        <form (submit)="handleSubmit($event)" class="space-y-4">
+          <!-- Username Input -->
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+              Username
+            </label>
+            <input
+              type="text"
+              name="userName"
+              [(ngModel)]="formData.userName"
+              (ngModelChange)="handleChange($event)"
+              class="w-full p-3 border rounded focus:outline-none focus:ring-2"
+              [ngClass]="{ 'border-red-500': formErrors.userName, 'border-gray-300': !formErrors.userName }"
+              placeholder="Enter your username"
+              required
+            />
+            <p *ngIf="formErrors.userName" class="text-red-500 text-xs mt-1">
+              {{ formErrors.userName }}
+            </p>
+          </div>
+  
+          <!-- Email Input -->
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              [(ngModel)]="formData.email"
+              (ngModelChange)="handleChange($event)"
+              class="w-full p-3 border rounded focus:outline-none focus:ring-2"
+              [ngClass]="{ 'border-red-500': formErrors.email, 'border-gray-300': !formErrors.email }"
+              placeholder="Enter your email"
+              required
+            />
+            <p *ngIf="formErrors.email" class="text-red-500 text-xs mt-1">
+              {{ formErrors.email }}
+            </p>
+          </div>
+  
+          <!-- Password Input -->
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              [(ngModel)]="formData.password"
+              (ngModelChange)="handleChange($event)"
+              class="w-full p-3 border rounded focus:outline-none focus:ring-2"
+              [ngClass]="{ 'border-red-500': formErrors.password, 'border-gray-300': !formErrors.password }"
+              placeholder="Enter your password"
+              required
+            />
+            <p *ngIf="formErrors.password" class="text-red-500 text-xs mt-1">
+              {{ formErrors.password }}
+            </p>
+          </div>
+  
+          <!-- Role Selection -->
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+              Role
+            </label>
+            <select
+              name="roleId"
+              [(ngModel)]="formData.roleId"
+              (ngModelChange)="handleChange($event)"
+              class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2"
+              required
+            >
+              <option value="1">User</option>
+              <option value="2">Designer</option>
+            </select>
+          </div>
+  
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            [disabled]="isLoading"
+            class="w-full bg-blue-600 text-white p-3 rounded font-bold"
+            [ngClass]="{ 'opacity-50 cursor-not-allowed': isLoading }"
+          >
+            {{ isLoading ? 'Creating Account...' : 'Sign Up' }}
+          </button>
+        </form>
+  
+        <!-- Sign In Link -->
+        <p class="mt-6 text-center text-gray-600">
+          Already have an account? 
+          <!-- <a routerLink="/signin" class="text-blue-600 hover:underline"> -->
+            <a href="/signin" class="text-blue-600 hover:underline">Sign in</a>
+          <!-- </a> -->
+        </p>
+      </div>
+    </div>
+  </div>
+  

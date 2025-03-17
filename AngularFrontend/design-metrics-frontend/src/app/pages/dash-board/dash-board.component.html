@@ -1,0 +1,111 @@
+<div class="max-w-7xl mx-auto p-4 space-y-6 bg-gray-50">
+    <!-- Dropdowns for X and Y Axis Selection -->
+    <div class="flex items-center justify-between space-x-4">
+      <div>
+        <label for="x-axis" class="block text-sm font-medium text-gray-700">
+          Select X-Axis
+        </label>
+        <select
+          id="x-axis"
+          [(ngModel)]="selectedXAxis"
+          (change)="updateCharts()"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        >
+          <option *ngFor="let column of columns" [value]="column">
+            {{ column }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label for="y-axis" class="block text-sm font-medium text-gray-700">
+          Select Y-Axis
+        </label>
+        <select
+          id="y-axis"
+          [(ngModel)]="selectedYAxis"
+          (change)="updateCharts()"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        >
+          <option *ngFor="let column of columns" [value]="column">
+            {{ column }}
+          </option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- Charts Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Bar Chart -->
+      <div class="bg-white rounded-xl shadow-md p-4">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Bar Chart</h3>
+        <canvas
+          baseChart
+          [data]="barChartData"
+          [type]="barChartType"
+          [options]="barChartOptions"
+          style="height: 200px; width: 100%"
+        ></canvas>
+      </div>
+  
+      <!-- Line Chart -->
+      <div class="bg-white rounded-xl shadow-md p-4">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Line Chart</h3>
+        <canvas
+          baseChart
+          [data]="lineChartData"
+          [type]="lineChartType"
+          [options]="lineChartOptions"
+          style="height: 200px; width: 100%"
+        ></canvas>
+      </div>
+  
+      <!-- Scatter Chart -->
+      <div class="bg-white rounded-xl shadow-md p-4">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Scatter Chart</h3>
+        <canvas
+          baseChart
+          [data]="scatterChartData"
+          [type]="scatterChartType"
+          [options]="scatterChartOptions"
+          style="height: 200px; width: 100%"
+        ></canvas>
+      </div>
+  
+      <!-- Pie Chart -->
+      <div class="bg-white rounded-xl shadow-md p-4">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Pie Chart</h3>
+        <canvas
+          baseChart
+          [data]="pieChartData"
+          [type]="pieChartType"
+          [options]="pieChartOptions"
+          style="height: 200px; width: 100%"
+        ></canvas>
+      </div>
+  
+      <!-- Donut Chart -->
+      <div class="bg-white rounded-xl shadow-md p-4">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Donut Chart</h3>
+        <canvas
+          baseChart
+          [data]="donutChartData"
+          [type]="donutChartType"
+          [options]="donutChartOptions"
+          style="height: 200px; width: 100%"
+        ></canvas>
+      </div>
+  
+      <!-- Area Chart -->
+      <div class="bg-white rounded-xl shadow-md p-4">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Area Chart</h3>
+        <canvas
+          baseChart
+          [data]="areaChartData"
+          [type]="lineChartType"
+          [options]="areaChartOptions"
+          style="height: 200px; width: 100%"
+        ></canvas>
+      </div>
+    </div>
+  </div>
+  

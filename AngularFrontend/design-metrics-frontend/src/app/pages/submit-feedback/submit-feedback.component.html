@@ -1,0 +1,71 @@
+<div class="container">
+    <h1 class="header">Submit Feedback</h1>
+  
+    <button (click)="navigateToMainPage()" class="back-button">Back to Main Page</button>
+  
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+  
+    <form class="form" (submit)="handleSubmit($event)">
+      <div class="form-group">
+        <label for="search">Search Design</label>
+        <input
+          type="text"
+          id="search"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="filterDesigns()"
+          (focus)="showDesigns = true"
+          (blur)="handleBlur()"
+          class="input"
+          placeholder="Type to search..."
+        />
+      </div>
+  
+      <div *ngIf="showDesigns && filteredDesigns.length > 0" class="dropdown">
+        <ul>
+          <li
+            *ngFor="let design of filteredDesigns"
+            (click)="designId = design.id; designName = design.name; searchTerm = ''; showDesigns = false"
+          >
+            {{ design.name }}
+          </li>
+        </ul>
+      </div>
+  
+      <!-- <div class="form-group">
+        <label for="designId">Selected Design</label>
+        <input type="text" id="designId" [value]="designName" readonly class="input readonly" />
+      </div> -->
+  
+      <div class="form-group">
+        <label for="feedback">Description (Required)</label>
+        <textarea
+          id="feedback"
+          [(ngModel)]="Description"
+          required
+          class="input"
+          rows="4"
+        ></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="file">Upload File (Excel, CSS, PDF) (Required)</label>
+        <input
+          type="file"
+          id="file"
+          accept=".xls,.xlsx,.css,.pdf"
+          (change)="handleFileChange($event)"
+          required
+          class="input"
+        />
+      </div>
+  
+      <button [disabled]="isSubmitting" class="submit-button"> 
+        {{ isSubmitting ? 'Submitting...' : 'Submit Feedback' }}
+      </button>
+    </form>
+  
+    <div *ngIf="isSubmitting" class="loading-overlay">
+      <div class="spinner"></div>
+    </div>
+  </div>
+  

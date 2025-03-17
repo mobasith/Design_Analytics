@@ -1,0 +1,93 @@
+<div class="profile-container">
+    <div class="sidebar">
+      <div class="sidebar-content">
+        <div class="user-profile">
+          <div class="user-icon">
+            <span class="icon">👤</span>
+          </div>
+          <h2>{{ userData.userName }}</h2>
+          <p class="role-label">{{ userData.role }}</p>
+        </div>
+        
+        <nav>
+          <ul>
+            <li><a href="/user-dashboard">Dashboard</a></li>
+            <li class="active"><a href="#">Settings</a></li>
+          </ul>
+        </nav>
+        
+        <button class="logout-btn" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  
+    <main class="main-content">
+      <div class="profile-wrapper">
+        <div class="profile-section">
+          <h1>Profile Overview</h1>
+          
+          <div class="info-grid">
+            <div class="info-card">
+              <h2>Account Information</h2>
+              <div class="info-item">
+                <span class="label">Username</span>
+                <span class="value">{{ userData.userName }}</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Role</span>
+                <span class="value">{{ userData.role }}</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Email</span>
+                <span class="value">{{ userData.email }}</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Phone Number</span>
+                <span class="value">{{ userData.phoneNumber || 'Not provided' }}</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Address</span>
+                <span class="value">{{ userData.address || 'Not provided' }}</span>
+              </div>
+            </div>
+  
+            <div class="password-card">
+              <form (submit)="handlePasswordUpdate($event)">
+                <h2>Change Password</h2>
+                <div class="form-group">
+                  <label for="currentPassword">Current Password</label>
+                  <input 
+                    id="currentPassword"
+                    type="password" 
+                    [(ngModel)]="passwordData.currentPassword"
+                    name="currentPassword"
+                    required 
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="newPassword">New Password</label>
+                  <input 
+                    id="newPassword"
+                    type="password" 
+                    [(ngModel)]="passwordData.newPassword"
+                    name="newPassword"
+                    required 
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input 
+                    id="confirmPassword"
+                    type="password" 
+                    [(ngModel)]="passwordData.confirmPassword"
+                    name="confirmPassword"
+                    required 
+                  />
+                </div>
+                <button type="submit" class="update-btn">Update Password</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>

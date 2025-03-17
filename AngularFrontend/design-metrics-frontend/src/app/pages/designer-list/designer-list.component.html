@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="header">
+      <button (click)="handleGoToDashboard()" class="back-button">
+        Back to Dashboard
+      </button>
+      <h1 class="title">Designers</h1>
+    </div>
+  
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+      <button (click)="fetchDesigners()" class="retry-button">Retry</button>
+    </div>
+  
+    <div *ngIf="isLoading" class="loading-message">Loading...</div>
+  
+    <div *ngIf="!isLoading && !selectedDesigner">
+      <div class="search-bar">
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          (input)="filterDesigners()"
+          placeholder="Search designers..."
+          class="search-input"
+        />
+      </div>
+  
+      <div class="designer-grid">
+        <div
+          *ngFor="let designer of filteredDesigners"
+          class="designer-card"
+          (click)="handleViewDesigns(designer)"
+        >
+          <div class="avatar">
+            <img src="user.jpg" alt="useravatar">
+          </div>
+          <h3 class="designer-name">{{ designer.userName || 'Unnamed Designer' }}</h3>
+          <p class="designer-email">{{ designer.email || 'No email provided' }}</p>
+          <button class="view-designs-button">View Designs</button>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="selectedDesigner">
+      <div class="designer-header">
+        <button (click)="handleBackToDesigners()" class="back-button">
+          Back to Designers
+        </button>
+        <h2>{{ selectedDesigner.userName }}'s Designs</h2>
+      </div>
+  
+      <div *ngIf="designerDesigns.length > 0" class="design-grid">
+        <div *ngFor="let design of designerDesigns" class="design-card">
+          <h3>{{ design.designTitle }}</h3>
+          <p>{{ design.description || 'No description provided' }}</p>
+          <div class="timestamps">
+            <p>Created at: {{ design.createdAt | date }}</p>
+            <p>Updated at: {{ design.updatedAt | date }}</p>
+          </div>
+          <img [src]="design.designInput" [alt]="design.designTitle" />
+        </div>
+      </div>
+  
+      <div *ngIf="designerDesigns.length === 0" class="no-designs">
+        No designs found for this designer.
+      </div>
+    </div>
+  </div>
+  
