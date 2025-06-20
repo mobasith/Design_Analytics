@@ -62,3 +62,5 @@ Ensure you have the following installed on your local machine:
 <img width="1440" alt="Screenshot 2024-11-17 at 11 48 34 PM" src="https://github.com/user-attachments/assets/915a9c23-aefc-477c-a587-9e2cf8c7be29">
 <img width="1438" alt="Screenshot 2024-11-17 at 11 49 09 PM" src="https://github.com/user-attachments/assets/1efa3eed-f58d-42ba-aadd-23054de9f4c7">
 
+Deployment url : design-analytics-ari30svgs-mohammed-basiths-projects-5e07bcff.vercel.app
+
